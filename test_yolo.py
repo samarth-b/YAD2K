@@ -119,8 +119,9 @@ def _main(args):
             image_type = imghdr.what(os.path.join(test_path, image_file))
             if not image_type:
                 continue
-        except IsADirectoryError:
-            continue
+        except EnvironmentError:
+            continue        
+
 
         image = Image.open(os.path.join(test_path, image_file))
         if is_fixed_size:  # TODO: When resizing we can use minibatch input.
